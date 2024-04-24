@@ -38,12 +38,13 @@ jobs:
       - name: Conectar na EC2
         if: always()
         run: |
-          echo -e ${{ secrets.SSH_KEY_VOCKEY }} > ./vockey.pem
+          echo -e ${{ secrets.SSH_KEY }} > ./vockey.pem
+          echo "teste"
           ls
           sudo chmod 400 ./vockey.pem
           ssh -i ./vockey.pem ec2-user@54.146.200.127
           ls
         env:
-          SSH_KEY_VOCKEY: ${{ secrets.SSH_KEY_VOCKEY }}
+          SSH_KEY: ${{ secrets.SSH_KEY_VOCKEY }}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
