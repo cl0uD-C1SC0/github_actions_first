@@ -38,7 +38,7 @@ jobs:
       - name: Conectar na EC2
         if: always()
         run: |
-          echo ${{ secrets.SSH_KEY_VOCKEY }} >> vockey.pem
+          echo -e ${{ secrets.SSH_KEY_VOCKEY }} >> vockey.pem
           sudo chmod 400 ~/vockey.pem
           ssh -i ~/vockey.pem ec2-user@54.146.200.127
           ls
