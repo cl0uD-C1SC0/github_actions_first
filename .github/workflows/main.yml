@@ -38,16 +38,19 @@ jobs:
       - name: Install Ansible
         if: always()
         run: |
-          sudo mkdir etc/
-          sudo mkdir etc/ansible/
-          sudo touch etc/ansible/hosts
-          sudo apt-add-repository ppa:ansible/ansible
-          sudo apt update -y
-          sudo apt install ansible
-          sudo echo "[servers]" >> /etc/ansible/hosts
-          sudo echo "apiwebserver ansible_host="54.146.200.127"
-          sudo echo "[all:vars]" >> /etc/ansible/hosts
-          sudo echo "ansible_python_interpreter=/usr/bin/python3" >> /etc/ansible/hosts
+          pwd
+          ls
+          sudo ls ..
+        # sudo mkdir etc/
+        # sudo mkdir etc/ansible/
+        # sudo touch etc/ansible/hosts
+        # sudo apt-add-repository ppa:ansible/ansible
+        # sudo apt update -y
+        # sudo apt install ansible
+        # sudo echo "[servers]" >> /etc/ansible/hosts
+        # sudo echo "apiwebserver ansible_host="54.146.200.127"
+        # sudo echo "[all:vars]" >> /etc/ansible/hosts
+        # sudo echo "ansible_python_interpreter=/usr/bin/python3" >> /etc/ansible/hosts
         env:
           SSH_KEY: ${{ secrets.SSH_KEY_VOCKEY }}
 
