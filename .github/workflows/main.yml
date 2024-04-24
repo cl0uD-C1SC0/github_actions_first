@@ -34,5 +34,13 @@ jobs:
         run: |
           docker build -t apicontainer .
         
+      - name: Conectar na EC2
+        run: |
+          echo ${{ SSH_KEY }} >> vockey.pem
+          sudo chmod 400 vockey.pem
+          ssh -i vockey.pem ec2-user@54.146.200.127
+          ls
+        env:
+          SSH_KEY: ${{ SSH_KEY_VOCKEY }}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
