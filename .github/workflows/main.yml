@@ -27,7 +27,7 @@ jobs:
 
       - name: DockerLint (CD)
         run: |
-          docker run --rm -i hadolint/hadolint < Dockerfile | exit 0
+          docker run --rm -i hadolint/hadolint < Dockerfile
 
       - name: Docker build
         if: always()
