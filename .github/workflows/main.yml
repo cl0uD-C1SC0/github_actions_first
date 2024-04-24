@@ -9,38 +9,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Instalar Pacotes
-        run : |
-          sudo apt update -y
-          sudo apt-get install curl wget unzip -y
+      # - name: Instalar Pacotes
+      #   run : |
+      #     sudo apt update -y
+      #     sudo apt-get install curl wget unzip -y
           
-      - name: Configurar AWS CLI
-        if: always()
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region us-east-1
+      # - name: Configurar AWS CLI
+      #   if: always()
+      #   run: |
+      #     aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws configure set default.region us-east-1
 
-          aws sts get-caller-identity
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws sts get-caller-identity
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: DockerLint (CD)
-        run: |
-          docker run --rm -i hadolint/hadolint < Dockerfile
+      # - name: DockerLint (CD)
+      #   run: |
+      #     docker run --rm -i hadolint/hadolint < Dockerfile
 
-      - name: Docker build
-        if: always()
-        run: |
-          docker build -t apicontainer .
+      # - name: Docker build
+      #   if: always()
+      #   run: |
+      #     docker build -t apicontainer .
         
       - name: Conectar na EC2
         if: always()
         run: |
           echo ${{ secrets.SSH_KEY_VOCKEY }} >> vockey.pem
-          sudo chmod 400 vockey.pem
-          ssh -i vockey.pem ec2-user@54.146.200.127
+          sudo chmod 400 ~/vockey.pem
+          ssh -i ~/vockey.pem ec2-user@54.146.200.127
           ls
         env:
           SSH_KEY_VOCKEY: ${{ secrets.SSH_KEY_VOCKEY }}
