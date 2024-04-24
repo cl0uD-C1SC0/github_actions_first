@@ -1,0 +1,397 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Gerenciamento de Recursos em Nuvem na AWS",
+    "description": "API para gerenciar recursos em nuvem utilizando Flask",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "AWS",
+      "description": "Endpoints relacionados à AWS"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para efetuar o Login na AWS",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties":
+            {
+            }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login executado com sucesso"
+          },
+          "500": {
+            "description": "Erro ao fazer Login na AWS"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/vpc": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação da VPC",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da VPC"
+                },
+                "endereco": {
+                    "type": "string",
+                    "description": "Endereço da VPC (CIDR)"
+                  }
+                }
+              }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "VPC criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar VPC"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Subrede Pública": {
+      "post": {
+        "summary": "Cria uma Subrede Pública na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação da Subrede Pública",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da Subrede Pública"
+                },
+                "endereco": {
+                  "type": "string",
+                  "description": "Endereço da Subrede Pública (CIDR)"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subrede Pública criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar Subrede Pública"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Subrede Privada": {
+      "post": {
+        "summary": "Cria uma Subrede Privada na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação da Subrede Privada",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da Subrede Privada"
+                },
+                "endereco": {
+                  "type": "string",
+                  "description": "Endereço da Subrede Privada (CIDR)"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subrede Privada criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar Subrede Privada"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Gateway": {
+      "post": {
+        "summary": "Cria um Gateway de Internet na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação do Gateway",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da Gateway"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gateway criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar o Gateway"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Tabela de Rota": {
+      "post": {
+        "summary": "Cria uma Tabela de Rotas na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação da Tabela de Rotas",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da Tabela de Rotas"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tabela de Rotas criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar a Tabela de Rotas"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Grupo de Segurança Linux": {
+      "post": {
+        "summary": "Cria um Grupo de Segurança Linux na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação do Grupo de Segurança Linux",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome do Grupo de Segurança Linux"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grupo de Segurança Linux criado com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar o Grupo de Segurança Linux"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Grupo de Segurança Windows": {
+      "post": {
+        "summary": "Cria um Grupo de Segurança Windows na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação do Grupo de Segurança Windows",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome do Grupo de Segurança Windows"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grupo de Segurança Windows criado com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar o Grupo de Segurança Windows"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Máquina Virtual Linux": {
+      "post": {
+        "summary": "Cria uma Instância EC2 Linux na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação da Instância Linux",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da Instância Linux"
+                },
+                "usuario": {
+                  "type": "string",
+                  "description": "Nome do usuário da Instância Linux"
+                },
+                "senha": {
+                  "type": "string",
+                  "description": "Senha da Instância Linux"
+                }
+              },
+              "required": ["nome", "usuario", "senha"]
+              }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instância Linux criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar Instância Linux"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Máquina Virtual Windows": {
+      "post": {
+        "summary": "Cria uma Instância EC2 Windows na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação da Instância Windows",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome da Instância Windows"
+                },
+                "usuario": {
+                  "type": "string",
+                  "description": "Nome do usuário da Instância Windows"
+                },
+                "senha": {
+                  "type": "string",
+                  "description": "Senha da Instância Windows"
+                }
+              },
+              "required": ["nome", "usuario", "senha"]
+              }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instância Windows criada com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar Instância Windows"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/Load Balancer": {
+      "post": {
+        "summary": "Cria um Load Balancer na AWS",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações para criação do Load Balancer",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "description": "Nome do Load Balancer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Load Balancer criado com sucesso"
+          },
+          "500": {
+            "description": "Erro ao criar Load Balancer"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    },
+    "/aws/destruir-recursos": {
+      "post": {
+        "summary": "Destroi todos os recursos na AWS",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Recursos na AWS destruídos com sucesso"
+          },
+          "500": {
+            "description": "Erro ao destruir recursos na AWS"
+          }
+        },
+        "tags": ["AWS"]
+      }
+    }
+  }
+}
