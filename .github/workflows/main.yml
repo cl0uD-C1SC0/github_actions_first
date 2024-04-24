@@ -41,6 +41,6 @@ jobs:
           ssh -i vockey.pem ec2-user@54.146.200.127
           ls
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY_VOCKEY }}
+          SSH_KEY_VOCKEY: ${{ secrets.SSH_KEY_VOCKEY }}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
