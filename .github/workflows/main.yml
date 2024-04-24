@@ -38,6 +38,7 @@ jobs:
       - name: Install Ansible
         if: always()
         run: |
+          sudo mkdir etc/
           sudo mkdir etc/ansible/
           sudo touch etc/ansible/hosts
           sudo apt-add-repository ppa:ansible/ansible
