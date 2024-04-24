@@ -30,9 +30,9 @@ COPY app/ .
 # Instalar os requisitos minimos (requirements.txt)
 RUN python3 -m pip install -r requirements.txt
 
-ENV AWS_ACCESS_KEY_ID="AKIAQ3EGRZIX3OWOGF44" 
-ENV AWS_SECRET_ACCESS_KEY="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"
-ENV AWS_DEFAULT_REGION="us-east-1"
+ENV AWS_ACCESS_KEY_ID="" 
+ENV AWS_SECRET_ACCESS_KEY=""
+ENV AWS_DEFAULT_REGION=""
 
 # CORRETO:
 # ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} 
