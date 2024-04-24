@@ -30,6 +30,7 @@ jobs:
           docker run --rm -i hadolint/hadolint < Dockerfile | exit 0
 
       - name: Docker build
+        if: always()
         run: |
           docker build -t apicontainer .
         
