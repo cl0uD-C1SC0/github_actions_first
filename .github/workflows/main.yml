@@ -21,11 +21,6 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
 
-      - name: Code Analysis (CI)
-        run: |
-          snyk config set org=f7c8f8b4-6ee4-468a-8a73-9f22f8547893
-          snyk code test --json
-
       # - name: Instalar Pacotes
       #   run : |
       #     sudo apt update -y
@@ -64,6 +59,10 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
+      - name: Docker Analysis (CI)
+        run: |
+          snyk container test apicontainer:latest
+
       - name: Docker Push (CD)
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
