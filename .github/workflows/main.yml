@@ -63,6 +63,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
       - name: Docker Analysis (CI)
+        if: always()
         run: |
           echo "VULNERABILIDADES" | figlet -c -f small
           snyk container test apicontainer:latest
