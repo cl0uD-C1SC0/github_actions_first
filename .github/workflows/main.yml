@@ -7,7 +7,6 @@ on:
     paths-ignore:
       - "docs/**"
       - "images/**"
-      - "*.md"
 jobs:
   githubactions-senai:
     runs-on: ubuntu-latest
