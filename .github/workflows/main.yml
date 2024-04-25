@@ -30,7 +30,7 @@ jobs:
       
       - name: Docker Login
         if: always()
-        uses: docker/login-action@v2.1.0
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
@@ -48,8 +48,17 @@ jobs:
           docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
           docker push josegabriel/apicontainer:$COMMIT_SHA
 
-      - name: Docker Scout (Docker Scan)
+      - name: Snyk Install
         run: |
-          docker scout repo --enable --organizations 
+          curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
+      
+      - name: Snyk Auth
+        run: |
+          snyk auth $SNYK_TOKEN
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+ 
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
