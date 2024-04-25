@@ -21,10 +21,10 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
 
-      # - name: Instalar Pacotes
-      #   run : |
-      #     sudo apt update -y
-      #     sudo apt-get install curl wget unzip -y
+      - name: Instalar Pacotes
+        run : |
+          sudo apt update -y
+          sudo apt-get install figlet -y
           
       - name: Configurar AWS CLI
         if: always()
@@ -62,6 +62,12 @@ jobs:
       - name: Docker Analysis (CI)
         run: |
           snyk container test apicontainer:latest
+          if [[ $? == "1" ]]; then
+            echo "MUITAS VULNERABILIDADES ENCONTRADAS" | figlet
+            exit(1)
+          else
+            echo "Nenhuma vulnerabilidade encontrada"
+            exit(0)
 
       - name: Docker Push (CD)
         run: |
