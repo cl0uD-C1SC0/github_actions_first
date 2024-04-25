@@ -1,7 +1,13 @@
 name: senai_automacao
 run-name: ${{ github.actor }} Pipeline Deploy 🚀
-on: [push]
-
+on: 
+  push:
+    branches:
+      - "master"
+    paths-ignore:
+      - "docs/**"
+      - "images/**"
+      - "*.md"
 jobs:
   githubactions-senai:
     runs-on: ubuntu-latest
