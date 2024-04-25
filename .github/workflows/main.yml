@@ -44,7 +44,8 @@ jobs:
         
       - name: Docker Push
         run: |
-          COMMIT_SHA = $(echo $GITHUB_SHA | cut -c 1-5)
+          COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
+          echo $COMMIT_SHA
 
           docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
           docker push jayakuza/apicontainer:$COMMIT_SHA
