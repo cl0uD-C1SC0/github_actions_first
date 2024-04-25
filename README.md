@@ -4,6 +4,9 @@
 > Curso Técnico Em Redes de Computadores
 
 
+
+![GitHub Actions Demo](https://github.com/cl0uD-C1SC0//docs/actions/workflows/main.yml/badge.svg)
+
 ## Index
 * [Sobre os instrutores](#sobre-os-instrutores)
 * [01 - O que é o Github](#01---o-que-é-o-github)
