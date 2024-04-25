@@ -1,5 +1,8 @@
 # Aula 67 - GitHub Actions - SENAI Paulo Antonio Skaf
+
+<div align="center">
 <img src="images/SENAI-Logo.png" height="100">
+</div>
 
 > Curso Técnico Em Redes de Computadores
 
