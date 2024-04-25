@@ -23,6 +23,7 @@ jobs:
 
       - name: Code Analysis (CI)
         run: |
+          snyk config set org=f7c8f8b4-6ee4-468a-8a73-9f22f8547893
           snyk code test --json
 
       # - name: Instalar Pacotes
