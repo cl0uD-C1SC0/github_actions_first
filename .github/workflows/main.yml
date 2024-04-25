@@ -29,7 +29,7 @@ jobs:
       - name: Configurar AWS CLI
         if: always()
         run: |
-          echo "AWS CLI" | figlet -c -f small
+          echo "AWS CLI" | figlet -f small
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set default.region us-east-1
@@ -40,9 +40,10 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      # - name: DockerLint (CI)
-      #   run: |
-      #     docker run --rm -i hadolint/hadolint < Dockerfile
+      - name: DockerLint (CI)
+        run: |
+          echo "DOCKERLINT" | figlet -f small
+          docker run --rm -i hadolint/hadolint < Dockerfile
       
       - name: Docker Login
         if: always()
@@ -66,14 +67,12 @@ jobs:
           snyk container test apicontainer:latest
           
       - name: Docker Push (CD)
+        if: always()
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
           echo $COMMIT_SHA
 
           docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
           docker push josegabriel/apicontainer:$COMMIT_SHA
-
-
- 
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
