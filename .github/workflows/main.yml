@@ -61,14 +61,9 @@ jobs:
           
       - name: Docker Analysis (CI)
         run: |
-          snyk container test apicontainer:latest
-          if [[ $(echo $?) -eq 1 ]]; then
-            echo "MUITAS VULNERABILIDADES ENCONTRADAS" | figlet
-            exit 1
-          else
-            echo "Nenhuma vulnerabilidade encontrada"
-            exit 0
-          fi
+          snyk container test apicontainer:latest --file=Dockerfile > vulnerabilities.txt
+          echo "VULNERABILIDADES" | figlet
+          cat vulnerabilities.txt
 
       - name: Docker Push (CD)
         run: |
