@@ -4,8 +4,7 @@
 > Curso Técnico Em Redes de Computadores
 
 
-
-![GitHub Actions Demo](https://github.com/cl0uD-C1SC0//docs/actions/workflows/main.yml/badge.svg)
+[GitHub Actions Demo](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml/badge.svg)
 
 ## Index
 * [Sobre os instrutores](#sobre-os-instrutores)
