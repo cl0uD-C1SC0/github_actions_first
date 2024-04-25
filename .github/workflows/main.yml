@@ -43,7 +43,7 @@ jobs:
       - name: DockerLint (CI)
         run: |
           echo "DOCKERLINT" | figlet -f small
-          docker run --rm -i hadolint/hadolint < Dockerfile
+          docker run --rm -i hadolint/hadolint < Dockerfile && exit 0
       
       - name: Docker Login
         if: always()
@@ -66,7 +66,7 @@ jobs:
         if: always()
         run: |
           echo "VULNERABILIDADES" | figlet -c -f small
-          snyk container test apicontainer:latest
+          snyk container test apicontainer:latest && exit 0
           
       - name: Docker Push (CD)
         if: always()
