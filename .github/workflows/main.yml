@@ -29,7 +29,7 @@ jobs:
       - name: Configurar AWS CLI
         if: always()
         run: |
-          echo "aws cli" | figlet
+          echo "AWS CLI" | figlet -c -f small
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set default.region us-east-1
@@ -62,7 +62,7 @@ jobs:
           
       - name: Docker Analysis (CI)
         run: |
-          echo "VULNERABILIDADES" | figlet
+          echo "VULNERABILIDADES" | figlet -c -f small
           snyk container test apicontainer:latest
           
       - name: Docker Push (CD)
