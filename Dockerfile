@@ -45,9 +45,9 @@ COPY --from=builder /usr/local/bin/terraform /usr/local/bin/terraform
 COPY --from=builder /usr/local/bin/aws /usr/local/bin/aws
 COPY --from=builder /work /work
 
-ENV AWS_ACCESS_KEY_ID="" 
-ENV AWS_SECRET_ACCESS_KEY=""
-ENV AWS_DEFAULT_REGION=""
+ENV AWS_ACCESS_KEY_ID="AKIAQ5DO5GKCBF2TIXEN" 
+ENV AWS_SECRET_ACCESS_KEY="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"
+ENV AWS_DEFAULT_REGION="us-east-1"
 
 RUN echo "[default]" >> aws/credentials
 RUN echo "aws_access_key_id = $(echo $AWS_ACCESS_KEY_ID)" >> aws/credentials 
