@@ -61,7 +61,7 @@ jobs:
           
       - name: Docker Analysis (CI)
         run: |
-          snyk container test apicontainer:latest --file=Dockerfile > vulnerabilities.txt
+          snyk container test apicontainer:latest > vulnerabilities.txt
           echo "VULNERABILIDADES" | figlet
           cat vulnerabilities.txt
 
