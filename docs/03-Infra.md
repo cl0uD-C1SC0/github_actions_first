@@ -68,3 +68,10 @@
 <div align="center">
 <img src="../images/SENAI-Logo.png" height="100">
 </div>
+
+<br><br><br>
+<div align="center">
+<p>SENAI São Caetano do Sul - Informática - Escola Senai "Paulo Antonio Skaf"</p>
+<p>Endereço: Rua Niteroi, 180 - Centro - São Caetano do Sul/SP</p>
+<p>Copyright 2024 © Todos os direitos reservados.</p>
+</div>
