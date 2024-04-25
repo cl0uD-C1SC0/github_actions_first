@@ -21,6 +21,7 @@
 * [03 - O que é DevOps?](#03---o-que-é-devops)
 * [04 - O que é Github Actions?](#04---o-que-é-github-actions)
 * [05 - Na prática (Tutorial)](#05---na-prática-tutorial)
+* [06 - Topologia](#06---topologia)
 
 <br><br>
 
@@ -163,6 +164,11 @@ print("SENAI PAULO ANTONIO SKAF! Olá Mundo!")
 > **OBS: Altere o script do github actions de acordo com a sua necessidade e possíveis problema de login.**
 
 > **OBS 2: O Script do Github Actions foi feito para fazer deploy no Docker Hub, portanto não se esqueça de alterar os parametros entre <> e criar as secrets que serão utilizadas pelo GitHub actions**
+
+## 06 - Topologia
+
+<img src="images/GithubActions-Topologia.jpg">
+
 <br><br>
 
 <div align="center">
