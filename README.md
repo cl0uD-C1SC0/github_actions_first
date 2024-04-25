@@ -167,7 +167,9 @@ print("SENAI PAULO ANTONIO SKAF! Olá Mundo!")
 
 ## 06 - Topologia
 
+<div align="center">
 <img src="images/GithubActions-Topologia.jpg">
+</div>
 
 <br><br>
 
