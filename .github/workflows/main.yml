@@ -1,9 +1,9 @@
-name: GitHub Actions Demo
+name: senai_automacao
 run-name: ${{ github.actor }} Pipeline Deploy 🚀
 on: [push]
 
 jobs:
-  Explore-GitHub-Actions:
+  githubactions-senai:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
