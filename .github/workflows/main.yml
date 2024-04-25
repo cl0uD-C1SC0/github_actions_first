@@ -62,10 +62,9 @@ jobs:
           
       - name: Docker Analysis (CI)
         run: |
-          snyk container test apicontainer:latest > vulnerabilities.txt
           echo "VULNERABILIDADES" | figlet
-          cat vulnerabilities.txt
-
+          snyk container test apicontainer:latest
+          
       - name: Docker Push (CD)
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
