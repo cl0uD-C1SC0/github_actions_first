@@ -12,7 +12,7 @@
 </p>
 
 
-## Index
+## Índice
 * [Sobre os instrutores](#sobre-os-instrutores)
 * [01 - O que é o Github](#01---o-que-é-o-github)
 * [02 - O que é e o porque de usar GitFlow](#02---o-que-é-e-o-porque-de-usar-gitflow)
