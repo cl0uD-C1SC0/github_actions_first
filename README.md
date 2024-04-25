@@ -1,8 +1,10 @@
-# Aula 67 - GitHub Actions - SENAI Paulo Antonio Skaf
-
 <div align="center">
 <img src="images/SENAI-Logo.png" height="100">
 </div>
+
+<br><br>
+
+# Aula 67 - GitHub Actions - SENAI Paulo Antonio Skaf
 
 > Curso Técnico Em Redes de Computadores
 
@@ -137,6 +139,35 @@ print("SENAI PAULO ANTONIO SKAF! Olá Mundo!")
 
 ## 05 - Na prática (Tutorial)
 
+* 01 - Crie um repositório para sua aplicação
+* 02 - Envie sua aplicação ao repositório
+* 03 - Acesse o repositório
+* 04 - Procure pela opção Actions (localizado no topo do repositório) e clique sobre a mesma
+* 05 - Procure um link em azul com o nome: `set up a workflow yourself`
+* 06 - Acese o repositório da aula (github_actions_first)
+* 07 - Acesse o diretório .github/workflows e copie o `conteúdo` do arquivo `main.yml`
+* 08 - Cole o conteúdo do arquivo copiado anteriormente no campo vazio do github Actions em `seu repositório`
+* 09 - No canto superior direito procure um botão `verde` de `Commit changes`
+* 10 - Envie suas alterações ao seu repositório
+* 11 - Agora procure pela opção `settings` do seu repositório e clique sobre a mesma
+* 12 - Em `settings` procure pela opção no menu à esquerda chamada `Secrets and Variables`
+* 13 - Em `Secrets and Variables` clique na opção `Actions`
+* 14 - Clique sobre o botão verde `New repository secret`
+* 15 - Adicione as seguintes secrets com seus respectivos valores:
+    * ``AWS_ACCESS_KEY_ID`` (Access key da AWS)
+    * ``AWS_SECRET_ACCESS_KEY`` (Secret access key da AWS)
+    * ``REGISTRY`` (No caso, aponte para: https://hub.docker.com/)
+    * ``DOCKER_USER`` (Nome do usuário do DockerHUB)
+    * ``DOCKER_PASSWORD`` (Senha do DockerHUB)
+
+> **OBS: Altere o script do github actions de acordo com a sua necessidade e possíveis problema de login.**
+
+> **OBS 2: O Script do Github Actions foi feito para fazer deploy no Docker Hub, portanto não se esqueça de alterar os parametros entre <> e criar as secrets que serão utilizadas pelo GitHub actions**
+<br><br>
+
+<div align="center">
+<img src="images/SENAI-Logo.png" height="100">
+</div>
 
 <br><br><br>
 <div align="center">
