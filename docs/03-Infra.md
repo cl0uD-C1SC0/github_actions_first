@@ -4,6 +4,8 @@
 
 <h1 align="center"> Sobre a infraestrutura </h1>
 
+## 01 - Infraestrutura (Básico)
+
 > A infraestrutura sempre deverá seguir um padrão de acordo com a empresa, mas geralmente tende a se separar em três ambientes: <br>
 >> * **Produção**: Ambiente que deve ser altamente escalável, com tipos de máquinas mais fortes e deverá ter uma arquitetura resiliente e sempre baseada em segurança; <br><br>
 >> * **Homologação**: Ambiente de homologação de aplicações, softwares, é onde é testado o quanto uma aplicação aguenta, testes de segurança, testes de latência, caso passe em todos os processos a aplicação ira subir para a produção por meio de PULL REQUEST; <br><br>
