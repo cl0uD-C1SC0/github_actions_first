@@ -46,7 +46,7 @@ jobs:
           echo $COMMIT_SHA
 
           docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
-          docker push jayakuza/apicontainer:$COMMIT_SHA
+          docker push josegabriel/apicontainer:$COMMIT_SHA
 
       - name: Docker Scout (Docker Scan)
         run: |
