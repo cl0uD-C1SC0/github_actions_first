@@ -28,19 +28,16 @@ jobs:
       #   run: |
       #     docker run --rm -i hadolint/hadolint < Dockerfile
       
-      # NÃO TESTADO ABAIXO
       - name: Docker Login
         uses: docker/login-action@v2.1.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      # NÃO TESTADO ACIMA
       
-      # - name: Docker build
-      #   if: always()
-      #   run: |
-      #     docker build -t apicontainer .
+      - name: Docker build
+        if: always()
+        run: |
+          docker build -t apicontainer .
         
       - name: Docker Push
         run: |
