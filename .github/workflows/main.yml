@@ -3,10 +3,11 @@ run-name: ${{ github.actor }} Pipeline Deploy 🚀
 on: 
   push:
     branches:
-      - "master"
+      - "main"
     paths-ignore:
       - "docs/**"
       - "images/**"
+      - "*.md"
 jobs:
   githubactions-senai:
     runs-on: ubuntu-latest
