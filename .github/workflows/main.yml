@@ -47,7 +47,8 @@ jobs:
       
       - name: Docker build
         run: |
-          docker build -t apicontainer .
+          echo $AWS_ACCESS_KEY_ID
+          docker build -t --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --build-arg AWS_DEFAULT_REGION="us-east-1" apicontainer .
         
       - name: Docker Push
         run: |
