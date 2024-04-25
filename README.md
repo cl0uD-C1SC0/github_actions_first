@@ -5,8 +5,7 @@
 
 <p align="center">
 
-> [![senai_automacao](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml/badge.svg)](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml)
-
+> [![senai_automacao](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml)
 </p>
 
 
