@@ -16,8 +16,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Snyk Install
+      - name: INSTALL PACKAGES
         run: |
+          sudo apt update -y
+          sudo apt-get install figlet -y
           curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
           chmod +x ./snyk
           mv ./snyk /usr/local/bin/
@@ -27,11 +29,6 @@ jobs:
           snyk -d auth $SNYK_TOKEN
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
-
-      - name: Instalar Pacotes
-        run : |
-          sudo apt update -y
-          sudo apt-get install figlet -y
           
       - name: Configurar AWS CLI
         if: always()
