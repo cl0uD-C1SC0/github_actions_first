@@ -9,11 +9,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Init
+      - name: Snyk Install
         run: |
-          export AWS_ACCESS_KEY_ID
-          export AWS_SECRET_ACCESS_KEY
-          export AWS_DEFAULT_REGION
+          curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
+            
+      - name: Snyk Auth
+        run: |
+          snyk auth $SNYK_TOKEN
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+
+      - name: Code Analysis (CI)
+        run: |
+          snyk code test --json
 
       # - name: Instalar Pacotes
       #   run : |
@@ -33,7 +43,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      # - name: DockerLint (CD)
+      # - name: DockerLint (CI)
       #   run: |
       #     docker run --rm -i hadolint/hadolint < Dockerfile
       
@@ -45,7 +55,7 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Docker build
+      - name: Docker build (CI)
         run: |
           echo $AWS_ACCESS_KEY_ID
           docker build --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --build-arg AWS_DEFAULT_REGION="us-east-1" -t apicontainer .
@@ -53,7 +63,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           
-      - name: Docker Push
+      - name: Docker Push (CD)
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
           echo $COMMIT_SHA
@@ -61,17 +71,7 @@ jobs:
           docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
           docker push josegabriel/apicontainer:$COMMIT_SHA
 
-      - name: Snyk Install
-        run: |
-          curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
-          chmod +x ./snyk
-          mv ./snyk /usr/local/bin/
-      
-      - name: Snyk Auth
-        run: |
-          snyk auth $SNYK_TOKEN
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+
  
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
