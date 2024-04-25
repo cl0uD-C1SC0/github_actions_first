@@ -3,6 +3,13 @@
 
 > Curso Técnico Em Redes de Computadores
 
+<p align="center">
+
+> Última Build: [![senai_automacao](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml/badge.svg)](https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml)
+
+</p>
+
+
 ## Index
 * [Sobre os instrutores](#sobre-os-instrutores)
 * [01 - O que é o Github](#01---o-que-é-o-github)
@@ -137,4 +144,3 @@ print("SENAI PAULO ANTONIO SKAF! Olá Mundo!")
 <p>Copyright 2024 © Todos os direitos reservados.</p>
 </div>
 
-<img src="https://github.com/cl0uD-C1SC0/github_actions_first/actions/workflows/main.yml/badge.svg">
