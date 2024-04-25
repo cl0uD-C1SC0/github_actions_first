@@ -7,50 +7,50 @@
 ## 01 - Infraestrutura (Básico)
 
 > A infraestrutura sempre deverá seguir um padrão de acordo com a empresa, mas geralmente tende a se separar em três ambientes: <br>
->> * **Produção**: Ambiente que deve ser altamente escalável, com tipos de máquinas mais fortes e deverá ter uma arquitetura resiliente e sempre baseada em segurança; <br><br>
->> * **Homologação**: Ambiente de homologação de aplicações, softwares, é onde é testado o quanto uma aplicação aguenta, testes de segurança, testes de latência, caso passe em todos os processos a aplicação ira subir para a produção por meio de PULL REQUEST; <br><br>
->> * **Develop**: Ambiente de desenvolvimento, onde é "permitido" que as aplicações subam com vulnerabilidades, problemas de código, tudo isso para fins de validação da lógica, antes de subir para homologação, o código deverá estar nos padrões conforme as regras da empresa. <br><br>
+>> * **Produção**: Ambiente que deve ser altamente escalável, com tipos de máquinas mais robustos e uma arquitetura resiliente e sempre baseada em segurança; <br><br>
+>> * **Homologação**: Ambiente de homologação de aplicações e softwares, onde são realizados testes de carga, segurança, e latência. Caso passe em todos os processos, a aplicação será promovida para produção por meio de PULL REQUEST; <br><br>
+>> * **Develop**: Ambiente de desenvolvimento, onde é "permitido" que as aplicações subam com vulnerabilidades e problemas de código, para fins de validação da lógica. Antes de subir para homologação, o código deve estar em conformidade com os padrões definidos pela empresa; <br><br>
 >> * **OBS: A Infraestrutura sempre ira depender do orçamento do cliente, empresa ou time, não existe uma regra definida de como deve ser uma infraestrutura, mas existe boas práticas mediante a ela, veja mais abaixo.**
 
 ## 02 - Segurança da infraestrutura, contas e permissõs
 
-> Construa sua infraestrutura pensando sempre na segurança;
+> Construa sua infraestrutura pensando sempre na segurança.
 
-> A infraestrutura deverá ser segura para que não ocorra falhas em produção, invasões de privacidade ou vazamento de dados sensíveis, pois, isso pode gerar custos graves a empresa;
+> A infraestrutura deve ser segura para evitar falhas em produção, invasões de privacidade ou vazamento de dados sensíveis, pois isso pode gerar custos graves para a empresa.
 
-> No quesito permissões, utilize o princípio de `Least Privilege` (Privilegio Mínimo), atribua somente as permissões necessárias e remova as não utilizadas. Nunca dê permissão para um usuário e sim o grupo de usuários;
+> No quesito de permissões, utilize o princípio de ``Least Privilege`` (Privilégio Mínimo), atribuindo somente as permissões necessárias e removendo as não utilizadas. Nunca dê permissões para um usuário individualmente, mas sim para grupos de usuários.
 
-> Na questão de contas, obrigue aos funcionários do time ou da empresa sempre utilizar MFA - Multi-Factor Authenticator;
+> Quanto às contas, exija que os funcionários do time ou da empresa sempre utilizem MFA - Multi-Factor Authenticator.
 
-> Jamais utilize a conta root para fazer qualquer tipo de tarefa e nunca compartilhe a senha da mesma ou de outras contas;
+> Nunca utilize a conta root para realizar qualquer tipo de tarefa e nunca compartilhe sua senha ou de outras contas.
 
-> Crie regras de segurança na rede restritas, por exemplo, nunca utilize a porta 22 para SSH, troque-a. Configure regras na ACL de rede ao invés do grupo de segurança, para que aplique para todos na rede.
+> Estabeleça regras de segurança na rede restritivas, por exemplo, evite utilizar a porta 22 para SSH, trocando-a por uma diferente. Configure regras na ACL de rede em vez do grupo de segurança, para que se apliquem a todos na rede.
 
 ## 03 - Resiliência + Custos
 
-> Uma infraestrutura com mais resiliência é uma infraestrutura capaz de se recuperar de possíveis desastres;
+> Uma infraestrutura com mais resiliência é capaz de se recuperar de possíveis desastres.
 
-> Prepare a infraestrutura para aguentar a carga de trabalho, mas jamais abuse disso pois pode gerar custos altos;
+> Prepare a infraestrutura para suportar a carga de trabalho, mas evite abusar disso, pois pode resultar em custos elevados.
 
-> Assegure-se que a infraestrutura tenha backup para eventuais falhas por exemplo no banco de dados;
+> Assegure-se de que a infraestrutura tenha backups para lidar com eventuais falhas, como no banco de dados.
 
-> Utilize instâncias grandes mas apenas suficiente para evitar custos demasiadamente altos;
+> Utilize instâncias grandes apenas quando necessário para evitar custos excessivos.
 
-> SEMPRE que possível coloque TAG em seus recursos para facilitar o GERENCIAMENTO DE CUSTOS por meio de tags;
+> Sempre que possível, adicione TAGs aos seus recursos para facilitar o GERENCIAMENTO DE CUSTOS.
 
-> Crie budgets (orçamentos) para todo tipo de projeto, para evitar custos altos;
+> Crie budgets (orçamentos) para todos os tipos de projetos, a fim de evitar custos elevados.
 
-> Utilize e abuse do conceito `Chaos-engineering` (Engenharia do CAOS) para testar a resiliência de sua infraestrutura.
+> Utilize e explore o conceito de ``Chaos Engineering`` (Engenharia do Caos) para testar a resiliência de sua infraestrutura.
 
 ## 04 - Automatizações
 
-> Automatize tarefas repetitivas para evitar falhas humanas;
+> Automatize tarefas repetitivas para evitar falhas humanas.
 
-> Utilize a cultura DevOps para facilitar o processo de desenvolvimento e garantir uma qualidade de entrega de software melhor;
+> Adote a cultura DevOps para facilitar o processo de desenvolvimento e garantir uma melhor qualidade na entrega de software.
 
-> Crie automações robustas e dinâmicas para que funcione em qualquer tipo de software, nuvem, local;
+> Desenvolva automações robustas e dinâmicas que funcionem em qualquer tipo de software, seja na nuvem ou local.
 
-> Menos e mais! Automações complexas geram manutenções prolongadas
+> Lembre-se: menos é mais! Automações complexas geram manutenções prolongadas.
 
 
 ## 05 - Monitoramento
