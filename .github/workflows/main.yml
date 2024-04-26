@@ -8,6 +8,7 @@ on:
       - "docs/**"
       - "images/**"
       - "*.md"
+      - "*.dockerignore"
 jobs:
   githubactions-senai:
     runs-on: ubuntu-latest
