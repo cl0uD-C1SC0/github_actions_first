@@ -22,6 +22,7 @@ jobs:
           sudo apt-get install figlet -y
           curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
           chmod +x ./snyk
+          mkdir /usr/local/bin
           mv ./snyk /usr/local/bin/
             
       - name: Snyk Auth
