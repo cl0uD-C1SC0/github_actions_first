@@ -80,8 +80,8 @@ jobs:
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
           echo $COMMIT_SHA
-          docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
-          docker push josegabriel/apicontainer:$COMMIT_SHA
+          docker tag apicontainer:latest <substituir_aqui>/apicontainer:$COMMIT_SHA
+          docker push <substituir_aqui>/apicontainer:$COMMIT_SHA
       
       - name: Terraform Apply
         if: always()
