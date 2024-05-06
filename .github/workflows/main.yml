@@ -1,54 +1,57 @@
 name: senai_automacao
-run-name: ${{ github.actor }} Pipeline Deploy 🚀
-on: 
+run-name: ${{ github.actor }} Pipeline deploy
+on:
   push:
     branches:
       - "main"
     paths-ignore:
-      - "docs/**"
-      - "images/**"
-      - "*.md"
-      - "*.dockerignore"
+      - "*.txt"
 jobs:
   githubactions-senai:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: INSTALL PACKAGES
         run: |
           sudo apt update -y
-          sudo apt-get install figlet -y
+          sudo apt-get install figlet unzip -y
+
           curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
           chmod +x ./snyk
           mv ./snyk /usr/local/bin/
-            
-      - name: Snyk Auth
-        run: |
+
+          sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+          wget -O- https://apt.releases.hashicorp.com/gpg | \
+            gpg --dearmor | \
+            sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+          
+          echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+            https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+            sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+          sudo apt update -y
+
+          sudo apt-get install terraform -y
+
+      - name: SNYK AUTH
+        run : |
           snyk -d auth $SNYK_TOKEN
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
-          
-      - name: Configurar AWS CLI
-        if: always()
-        run: |
-          echo "AWS CLI" | figlet -f small
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set default.region us-east-1
-          export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-          export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-          export AWS_DEFAULT_REGION="us-east-1"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Configure AWS CLI
+        if: always() 
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
 
-      - name: DockerLint (CI)
-        run: |
-          echo "DOCKERLINT" | figlet -f small
-          docker run --rm -i hadolint/hadolint < Dockerfile || true
-      
+      - name: Test aws cli
+        if: always()
+        run: aws sts get-caller-identity
+
       - name: Docker Login
         if: always()
         uses: docker/login-action@v3
@@ -60,11 +63,11 @@ jobs:
       - name: Docker build (CI)
         if: always()
         run: |
-          echo $AWS_ACCESS_KEY_ID
-          docker build --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --build-arg AWS_DEFAULT_REGION="us-east-1" -t apicontainer .
+          docker build --build-arg AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --build-arg AWS_DEFAULT_REGION="us-east-1" -t apicontainer .
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           
       - name: Docker Analysis (CI)
         if: always()
@@ -77,8 +80,14 @@ jobs:
         run: |
           COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
           echo $COMMIT_SHA
-
-          docker tag apicontainer:latest <substituir_aqui>/apicontainer:$COMMIT_SHA
-          docker push <substituir_aqui>/apicontainer:$COMMIT_SHA
-
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          docker tag apicontainer:latest josegabriel/apicontainer:$COMMIT_SHA
+          docker push josegabriel/apicontainer:$COMMIT_SHA
+      
+      - name: Terraform Apply
+        if: always()
+        run: |
+          COMMIT_SHA=$(echo $GITHUB_SHA | cut -c 1-5)
+          terraform init
+          terraform apply -var="github_sha=$COMMIT_SHA" --auto-approve
+        env:
+          GITHUB_SHA: ${{ github.sha }}
